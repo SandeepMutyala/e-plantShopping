@@ -4,6 +4,8 @@ import { Routes, Route, Link } from 'react-router-dom';
 
 import ProductList from './components/ProductList';
 
+import Navbar from './components/Navbar';
+
 import CartItem from './components/CartItem';
 
 import AboutUs from './components/AboutUs';
@@ -19,13 +21,13 @@ function App() {
 
   return (
     <>
-      <nav>
+      <Navbar>
         <Link to="/">Home</Link>
 
         <Link to="/plants">Plants</Link>
 
         <Link to="/cart">🛒 {count}</Link>
-      </nav>
+      </Navbar>
 
       <Routes>
         <Route path="/" element={<AboutUs />} />

@@ -1,38 +1,60 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import plants from '../data/plants';
 
 import { useDispatch } from 'react-redux';
 
-import { addToCart } from '../redux/CartSlice';
+import { addItem } from '../redux/CartSlice';
 
 function ProductList() {
   const dispatch = useDispatch();
+
+  const [addedPlants, setAddedPlants] = useState([]);
+
+  const categories = [
+    'Medicinal Plants',
+    'Aromatic Plants',
+    'Flowering Plants',
+  ];
+
+  const handleAdd = (plant) => {
+    dispatch(addItem(plant));
+
+    setAddedPlants([...addedPlants, plant.id]);
+  };
 
   return (
     <div>
       <h1>Plants Collection</h1>
 
-      <div className="products">
-        {plants.map((plant) => (
-          <div className="card" key={plant.id}>
-            <img src={plant.image} />
+      {categories.map((category) => (
+        <div key={category}>
+          <h2>{category}</h2>
 
-            <h3>{plant.name}</h3>
+          <div className="products">
+            {plants
 
-            <p>
-              Category:
-              {plant.category}
-            </p>
+              .filter((plant) => plant.category === category)
 
-            <p>${plant.price}</p>
+              .map((plant) => (
+                <div className="card" key={plant.id}>
+                  <img src={plant.image} alt={plant.name} />
 
-            <button onClick={() => dispatch(addToCart(plant))}>
-              Add to Cart
-            </button>
+                  <h3>{plant.name}</h3>
+
+                  <p>${plant.price}</p>
+
+                  <button
+                    disabled={addedPlants.includes(plant.id)}
+                    onClick={() => handleAdd(plant)}
+                  >
+                    {addedPlants.includes(plant.id) ? 'Added' : 'Add to Cart'}
+                  </button>
+                </div>
+              ))}
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 }
