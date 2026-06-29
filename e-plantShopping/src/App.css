@@ -1,0 +1,71 @@
+body {
+  font-family: Arial;
+  margin: 0;
+}
+
+nav {
+  background: #2e7d32;
+  padding: 20px;
+}
+
+nav a {
+  color: white;
+  margin: 20px;
+  text-decoration: none;
+}
+
+.landing {
+  height: 100vh;
+
+  background-image: url('https://images.unsplash.com/photo-1497250681960-ef046c08a56e');
+
+  background-size: cover;
+
+  text-align: center;
+
+  padding-top: 150px;
+
+  color: white;
+}
+
+.landing h1 {
+  font-size: 50px;
+}
+
+button {
+  padding: 10px 20px;
+
+  background: #388e3c;
+
+  color: white;
+
+  border: none;
+
+  cursor: pointer;
+}
+
+.products {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 20px;
+}
+
+.card {
+  border: 1px solid gray;
+
+  padding: 20px;
+
+  margin: 20px;
+
+  width: 220px;
+}
+
+.card img {
+  width: 200px;
+
+  height: 200px;
+
+  object-fit: cover;
+}
